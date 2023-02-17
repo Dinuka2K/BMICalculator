@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BmiCalculator extends JFrame {
 
@@ -10,6 +12,10 @@ public class BmiCalculator extends JFrame {
     private JTextArea txtHeight;
     private JButton submitBtn;
     private JButton ClearBtn;
+    private JComboBox cmBoxWeight;
+    private JComboBox cmBoxHeight;
+    private JLabel lblDisplayState;
+    private JTextField txtResult;
 
     BmiCalculator(){
         add(calPanel);
@@ -17,8 +23,33 @@ public class BmiCalculator extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
+        submitBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int result = txtWeight.getText()/txtHeight.getText()*txtHeight.getText();
+                txtResult.setColumns(result);
+            }
+        });
+        ClearBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        cmBoxWeight.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        cmBoxHeight.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
     }
     public static void main(String[] args) {
-
+        BmiCalculator cal = new BmiCalculator();
     }
 }
