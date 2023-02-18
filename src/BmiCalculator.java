@@ -26,14 +26,18 @@ public class BmiCalculator extends JFrame {
         submitBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int result = txtWeight.getText()/txtHeight.getText()*txtHeight.getText();
-                txtResult.setColumns(result);
+                double h = Double.parseDouble(txtHeight.getText());
+                double w = Double.parseDouble(txtWeight.getText());
+
+                double bmi = w/(h*h);
+                String calc = String.format("%.2f",bmi);
+                txtResult.setText(calc);
             }
         });
         ClearBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                
             }
         });
         cmBoxWeight.addActionListener(new ActionListener() {
