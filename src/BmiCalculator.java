@@ -37,7 +37,9 @@ public class BmiCalculator extends JFrame {
         ClearBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                txtHeight.setText("");
+                txtWeight.setText("");
+                txtResult.setText("");
             }
         });
         cmBoxWeight.addActionListener(new ActionListener() {
