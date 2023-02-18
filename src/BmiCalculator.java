@@ -12,26 +12,60 @@ public class BmiCalculator extends JFrame {
     private JTextArea txtHeight;
     private JButton submitBtn;
     private JButton ClearBtn;
-    private JComboBox cmBoxWeight;
-    private JComboBox cmBoxHeight;
     private JLabel lblDisplayState;
     private JTextField txtResult;
+    private JLabel txtLine;
+    private JRadioButton radioKG;
+    private JRadioButton radioPounds;
+    private JRadioButton radioMeter;
+    private JRadioButton radioInches;
 
     BmiCalculator(){
         add(calPanel);
-        setSize(300,300);
+        setSize(700,700);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
         submitBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double h = Double.parseDouble(txtHeight.getText());
-                double w = Double.parseDouble(txtWeight.getText());
+                if (radioPounds.isSelected() == true && radioInches.isSelected()==true){
+                    double h = Double.parseDouble(txtHeight.getText());
+                    double w = Double.parseDouble(txtWeight.getText());
 
-                double bmi = w/(h*h);
-                String calc = String.format("%.2f",bmi);
-                txtResult.setText(calc);
+                    double bmi = w*703/(h*h);
+                    String calc = String.format("%.2f",bmi);
+                    txtResult.setText(calc);
+
+                    if (bmi <= 18.5 ){
+                        txtLine.setText("Underweight");
+                    } else if (bmi <= 24.9) {
+                        txtLine.setText("Normal");
+                    } else if (bmi <= 29.9) {
+                        txtLine.setText("OverWeight");
+                    }else{
+                        txtLine.setText("Obese");
+                    }
+                }
+                else {
+                    double h = Double.parseDouble(txtHeight.getText());
+                    double w = Double.parseDouble(txtWeight.getText());
+
+                    double bmi = w / (h * h);
+                    String calc = String.format("%.2f", bmi);
+                    txtResult.setText(calc);
+
+                    if (bmi <= 18.5) {
+                        txtLine.setText("Underweight");
+                    } else if (bmi <= 24.9) {
+                        txtLine.setText("Normal");
+                    } else if (bmi <= 29.9) {
+                        txtLine.setText("OverWeight");
+                    } else {
+                        txtLine.setText("Obese");
+                    }
+                }
+
             }
         });
         ClearBtn.addActionListener(new ActionListener() {
@@ -40,20 +74,12 @@ public class BmiCalculator extends JFrame {
                 txtHeight.setText("");
                 txtWeight.setText("");
                 txtResult.setText("");
-            }
-        });
-        cmBoxWeight.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+                txtLine.setText("");
 
             }
         });
-        cmBoxHeight.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-            }
-        });
+
+
     }
     public static void main(String[] args) {
         BmiCalculator cal = new BmiCalculator();
